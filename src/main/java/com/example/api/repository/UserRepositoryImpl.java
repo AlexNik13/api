@@ -27,4 +27,13 @@ public class UserRepositoryImpl implements UserRepository {
         );
         return user;
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        User user = delegate.findByEmail().orElseThrow(
+                NoSuchElementException::new
+        );
+
+        return user;
+    }
 }

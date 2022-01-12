@@ -20,7 +20,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-
     @GetMapping("/profile/{userId}")
     public AdminUserResponseDto getUserInfo(@PathVariable Long userId){
         User user = userService.getUser(userId);

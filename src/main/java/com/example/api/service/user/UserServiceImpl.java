@@ -23,6 +23,8 @@ public class UserServiceImpl implements UserService {
         user.setName(dto.getName());
         user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
 
+
+
         return saveUser(user);
     }
 
@@ -34,6 +36,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(Long userId) {
         User user = userRepository.getUserById(userId);
-        return null;
+        return user;
     }
 }
