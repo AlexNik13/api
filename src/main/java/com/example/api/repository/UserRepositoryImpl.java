@@ -4,6 +4,7 @@ import com.example.api.model.User;
 import com.example.api.repository.spring.UserRepositoryString;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Repository
@@ -35,5 +36,10 @@ public class UserRepositoryImpl implements UserRepository {
         );
 
         return user;
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return delegate.findAll();
     }
 }

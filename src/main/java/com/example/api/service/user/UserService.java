@@ -4,6 +4,8 @@ package com.example.api.service.user;
 import com.example.api.dto.user.UserRequestDto;
 import com.example.api.model.User;
 
+import java.util.List;
+
 
 public interface UserService {
 
@@ -13,4 +15,6 @@ public interface UserService {
     User saveUser(User user);
 
     User getUser(Long userId);
+
+    List<User> getAllUserInfo();
 }

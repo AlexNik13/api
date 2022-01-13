@@ -8,6 +8,8 @@ import com.example.api.model.User;
 import com.example.api.service.user.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -30,5 +32,12 @@ public class UserController {
     public UserResponseDto getUserInfo(@PathVariable Long userId){
         User user = userService.getUser(userId);
         return UserMapper.toUserResponseDto(user);
+    }
+
+    @GetMapping("/profile")
+    public List<UserResponseDto>  getAllUserInfo(){
+        List<User> users = userService.getAllUserInfo();
+
+        return UserMapper.toAllUserResponseDto(users);
     }
 }
