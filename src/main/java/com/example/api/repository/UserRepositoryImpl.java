@@ -30,7 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getUserByEmail(String email) {
-        User user = delegate.findByEmail().orElseThrow(
+        User user = delegate.findByEmail(email).orElseThrow(
                 NoSuchElementException::new
         );
 

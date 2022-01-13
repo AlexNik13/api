@@ -4,6 +4,7 @@ import com.example.api.dto.user.UserRequestDto;
 import com.example.api.model.User;
 import com.example.api.repository.UserRepositoryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepositoryImpl userRepository;
+    private final PasswordEncoder encoder;
 
-    public UserServiceImpl(UserRepositoryImpl userRepository) {
+    public UserServiceImpl(UserRepositoryImpl userRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     @Override
@@ -21,9 +24,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setEmail(dto.getEmail());
         user.setName(dto.getName());
-        user.setPassword(new BCryptPasswordEncoder().encode(dto.getPassword()));
-
-
+        user.setPassword(encoder.encode(dto.getPassword()));
 
         return saveUser(user);
     }

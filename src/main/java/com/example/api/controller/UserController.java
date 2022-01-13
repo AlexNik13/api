@@ -19,7 +19,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/new")
+    @PostMapping("/new")
     public UserResponseDto createNewUser(@RequestBody UserRequestDto dto){
         User user = userService.createNewUser(dto);
         return UserMapper.toUserResponseDto(user);
