@@ -19,4 +19,6 @@ public interface UserService {
     List<User> getAllUserInfo();
 
     List<User> findPagingUser(int n1, int n2);
+
+    User getUserByEmail(String email);
 }

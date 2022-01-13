@@ -6,6 +6,7 @@ import com.example.api.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,6 +32,12 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -41,8 +48,9 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/login").permitAll()
                 .antMatchers("/user/new").permitAll()
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/user/**").authenticated()
                 .and()
                 .apply(new JwtTokenFilterConfig(tokenProvider));
 
