@@ -40,4 +40,12 @@ public class UserController {
 
         return UserMapper.toAllUserResponseDto(users);
     }
+
+    @GetMapping("/profile/{n1}/{n2}")
+    public List<UserResponseDto>  getPagingUserInfo(@PathVariable int n1,
+                                                    @PathVariable int n2){
+        List<User> users = userService.findPagingUser(n1, n2);
+
+        return UserMapper.toAllUserResponseDto(users);
+    }
 }

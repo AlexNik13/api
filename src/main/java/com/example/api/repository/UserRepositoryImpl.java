@@ -2,6 +2,9 @@ package com.example.api.repository;
 
 import com.example.api.model.User;
 import com.example.api.repository.spring.UserRepositoryString;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,6 +43,23 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAllUser() {
-        return delegate.findAll();
+
+        Pageable first = Pageable.ofSize(5);
+
+
+        Page<User> users = delegate.findAll(first);
+
+        return users.stream().toList();
+    }
+
+    @Override
+    public List<User> findPagingUser(int n1, int n2) {
+
+        Pageable first = PageRequest.of(n1, n2);
+
+
+        Page<User> users = delegate.findAll(first);
+
+        return users.stream().toList();
     }
 }

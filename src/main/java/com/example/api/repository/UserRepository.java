@@ -12,4 +12,6 @@ public interface UserRepository {
     User getUserByEmail(String username);
 
     List<User> findAllUser();
+
+    List<User> findPagingUser(int n1, int n2);
 }

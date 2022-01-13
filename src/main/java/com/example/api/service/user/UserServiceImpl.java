@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUserInfo() {
         return userRepository.findAllUser();
     }
+
+    @Override
+    public List<User> findPagingUser(int n1, int n2) {
+        return userRepository.findPagingUser(n1, n2);
+    }
 }
