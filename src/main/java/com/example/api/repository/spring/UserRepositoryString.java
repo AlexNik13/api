@@ -13,4 +13,8 @@ public interface UserRepositoryString extends PagingAndSortingRepository<User, L
 /*    List<User> findAll(Pageable pageable);*/
 
     Optional<User> findByEmail(String email);
+
+    Optional<User> findByName(String name);
+
+
 }

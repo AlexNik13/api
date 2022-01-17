@@ -62,4 +62,17 @@ public class UserRepositoryImpl implements UserRepository {
 
         return users.stream().toList();
     }
+
+    @Override
+    public User findUser(String email) {
+
+        User user = delegate.findByEmail(email).orElseThrow(
+                NoSuchElementException::new
+        );
+
+      /*  User user = delegate.findByName(name).orElseThrow(
+                NoSuchElementException::new
+        );*/
+        return user;
+    }
 }
